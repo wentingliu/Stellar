@@ -10,83 +10,84 @@ import Foundation
 /// A set of preset bezier curves.
 public enum TimingFunctionType {
     /// Equivalent to `kCAMediaTimingFunctionDefault`.
-    case Default
+    case `default`
     
     /// Equivalent to `kCAMediaTimingFunctionEaseIn`.
-    case EaseIn
+    case easeIn
     
     /// Equivalent to `kCAMediaTimingFunctionEaseOut`.
-    case EaseOut
+    case easeOut
     
     /// Equivalent to `kCAMediaTimingFunctionEaseInEaseOut`.
-    case EaseInEaseOut
+    case easeInEaseOut
     
     /// No easing.
-    case Linear
+    case linear
     
     /// Inspired by the default curve in Google Material Design.
-    case SwiftOut
+    case swiftOut
     /// 
-    case BackEaseIn
+    case backEaseIn
     ///
-    case BackEaseOut
+    case backEaseOut
     ///
-    case BackEaseInOut
+    case backEaseInOut
     ///
-    case BounceOut
+    case bounceOut
     ///
-    case Sine
+    case sine
     ///
-    case Circ
+    case circ
     ///
-    case ExponentialIn
+    case exponentialIn
     ///
-    case ExponentialOut
+    case exponentialOut
     ///
-    case ElasticIn
+    case elasticIn
     ///
-    case BounceReverse
+    case bounceReverse
     ///
-    case ElasticOut
+    case elasticOut
     /// custom
-    case Custom(Double, Double, Double, Double)
+    case custom(Double, Double, Double, Double)
     
     
     func easing() -> TimingSolvable {
         switch self {
-        case .Default:
+        case .default:
             return UnitBezier(p1x: 0.25, p1y: 0.1, p2x: 0.25, p2y: 1.0)
-        case .EaseIn:
+        case .easeIn:
             return UnitBezier(p1x: 0.42, p1y: 0.0, p2x: 1.0, p2y: 1.0)
-        case .EaseOut:
+        case .easeOut:
             return UnitBezier(p1x: 0.0, p1y: 0.0, p2x: 0.58, p2y: 1.0)
-        case .EaseInEaseOut:
+        case .easeInEaseOut:
             return UnitBezier(p1x: 0.42, p1y: 0.0, p2x: 0.58, p2y: 1.0)
-        case .Linear: 
+        case .linear: 
             return UnitBezier(p1x: 0.0, p1y: 0.0, p2x: 1.0, p2y: 1.0)
-        case .SwiftOut: 
+        case .swiftOut: 
             return UnitBezier(p1x: 0.4, p1y: 0.0, p2x: 0.2, p2y: 1.0)
-        case .BackEaseIn:
+        case .backEaseIn:
             return EasingContainer(easing: { (t: Double) in
                 return t * t * t - t * sin(t * M_PI)
             })
-        case .BackEaseOut:
+        case .backEaseOut:
             return EasingContainer(easing: { (t: Double) in
                 let f = (1 - t);
                 return 1 - (f * f * f - f * sin(f * M_PI));
             })
-        case .BackEaseInOut:
+        case .backEaseInOut:
             return EasingContainer(easing: { (t: Double) in
                 if(t < 0.5) {
                     let f = 2 * t;
                     return 0.5 * (f * f * f - f * sin(f * M_PI));
                 } else {
                     let f = (1.0 - (2.0 * t - 1.0));
-                    let cubic = f * f * f
-                    return 0.5 * (1.0 - (cubic - f * sin(f * M_PI))) + 0.5;
+                    let cubic = f * f * f;
+                    let temp = f * sin(f * M_PI);
+                    return 0.5 * (1.0 - (cubic - temp)) + 0.5;
                 }
             })
-        case .BounceOut:
+        case .bounceOut:
             return EasingContainer(easing: { (t: Double) in
                 if(t < 4/11.0){
                     return (121 * t * t)/16.0;
@@ -98,31 +99,31 @@ public enum TimingFunctionType {
                     return (54/5.0 * t * t) - (513/25.0 * t) + 268/25.0;
                 }
             })
-        case .Sine:
+        case .sine:
             return EasingContainer(easing: { (t: Double) in
                 return 1 - cos( t * M_PI / 2.0)
             })
-        case .Circ:
+        case .circ:
             return EasingContainer(easing: { (t: Double) in
                 return 1 - sqrt( 1.0 - t * t )
             })
-        case .ExponentialIn:
+        case .exponentialIn:
             return EasingContainer(easing: { (t: Double) in
                 return (t == 0.0) ? t : pow(2, 10 * (t - 1))
             })
-        case .ExponentialOut:
+        case .exponentialOut:
             return EasingContainer(easing: { (t: Double) in
                 return (t == 1.0) ? t : 1 - pow(2, -10 * t)
             })
-        case .ElasticIn:
+        case .elasticIn:
             return EasingContainer(easing: { (t: Double) in
                 return sin(13.0 * M_PI_2 * t) * pow(2, 10 * (t - 1))
             })
-        case .ElasticOut:
+        case .elasticOut:
             return EasingContainer(easing: { (t: Double) in
                 return sin(-13.0 * M_PI_2 * (t + 1)) * pow(2, -10 * t) + 1.0;
             })
-        case .BounceReverse:
+        case .bounceReverse:
             return EasingContainer(easing: { (t: Double) in
                 var bounce: Double = 4.0
                 var pow2 = 0.0
@@ -134,7 +135,7 @@ public enum TimingFunctionType {
                 
                 return 1 / pow( 4, 3 - bounce ) - 7.5625 * pow( ( pow2 * 3 - 2 ) / 22 - t, 2 );
             })
-        case .Custom(let p1x,let p1y,let p2x,let p2y):
+        case .custom(let p1x,let p1y,let p2x,let p2y):
             return UnitBezier(p1x: p1x, p1y: p1y, p2x: p2x, p2y: p2y)
         }
     }
@@ -148,7 +149,7 @@ class EasingContainer: TimingSolvable {
     }
     
     //
-    func solveOn(time: Double, epslion: Double) -> Double {
+    func solveOn(_ time: Double, epslion: Double) -> Double {
         return self.easing(time)
     }
 }

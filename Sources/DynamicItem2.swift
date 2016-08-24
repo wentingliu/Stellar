@@ -58,7 +58,7 @@ final class DynamicItem2<T: Vectorial2>: NSObject, UIDynamicItem {
         let curZ = fromR.width + change.z * progress;
         let curW = fromR.height + change.w * progress;
         
-        let rect = CGRectMake(curX, curY, curZ, curW)
+        let rect = CGRect(x: curX, y: curY, width: curZ, height: curW)
         var curV = from.convert(rect)
         if progress >= 1.0 {
             if boundaryLimit {
@@ -71,16 +71,16 @@ final class DynamicItem2<T: Vectorial2>: NSObject, UIDynamicItem {
     }
     
     //MARK: UIDynamicItem protocol
-    var center: CGPoint = CGPointZero {
+    var center: CGPoint = CGPoint.zero {
         didSet {
             updateFrame()
         }
     }
     
-    var transform: CGAffineTransform = CGAffineTransformIdentity
+    var transform: CGAffineTransform = CGAffineTransform.identity
     var bounds: CGRect {
         get {
-            return CGRectMake(0.0, 0.0, 100.0, 100.0)
+            return CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0)
         }
     }
 }

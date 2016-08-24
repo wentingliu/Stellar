@@ -8,15 +8,26 @@
 
 import UIKit
 
-public protocol Chainable {
+public protocol StellarContext {
+    var context: AnimationContext { get }
+}
+
+public protocol Chainable : StellarContext {
+    associatedtype ChainableType
+    
     //Chainable methods
-    func then() -> UIView
+    func then() -> ChainableType
     func animate() -> Void
 }
 
-//CALayer
-public protocol Chainable1 {
-    //Chainable methods
-    func then() -> CALayer
-    func animate() -> Void
+extension Chainable {
+    public func then() -> ChainableType {
+        context.makeNextStep()
+        return self as! ChainableType
+    }
+    
+    //commit to excute
+    public func animate() -> Void {
+        context.commit()
+    }
 }

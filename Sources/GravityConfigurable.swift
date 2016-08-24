@@ -9,9 +9,14 @@
 import UIKit
 
 public protocol GravityConfigurable: BasicChainable {
-    func gravity(magnitude: Double) -> GravityConfigurable
+    associatedtype GravityConfigurableType
+    
+    func gravity(_ magnitude: Double) -> GravityConfigurableType
 }
 
-public protocol GravityConfigurable1: BasicChainable1 {
-    func gravity(magnitude: Double) -> GravityConfigurable1
+extension GravityConfigurable {
+    public func gravity(_ magnitude: Double = 1.0) -> GravityConfigurableType {
+        context.changeMainType(.gravity(magnitude))
+        return self as! GravityConfigurableType
+    }
 }

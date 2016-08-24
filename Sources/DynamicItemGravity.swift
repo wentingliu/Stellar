@@ -110,25 +110,25 @@ class DynamicItemGravity<T: Interpolatable>: NSObject, UIDynamicItem {
             }
         }
         
-        let value = from.interpolate(progress, to: to, externalData: externalData)
-        render(value)
+        let value = from.interpolate(progress, to: to as! T.InterpolatableType, externalData: externalData)
+        render(value as! T)
     }
     
-    private func gravityOffset(t: CFTimeInterval) -> Double {
+    private func gravityOffset(_ t: CFTimeInterval) -> Double {
         return t * t * 1000.0 * magnitude;
     }
     
     //MARK: UIDynamicItem protocol
-    var center: CGPoint = CGPointZero {
+    var center: CGPoint = CGPoint.zero {
         didSet {
             updateFrame()
         }
     }
     
-    var transform: CGAffineTransform = CGAffineTransformIdentity
+    var transform: CGAffineTransform = CGAffineTransform.identity
     var bounds: CGRect {
         get {
-            return CGRectMake(0.0, 0.0, 100.0, 100.0)
+            return CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0)
         }
     }
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol AnimationSequenceDelegate: class {
-    func animationSequenceDidComplete(sequence: AnimationSequence);
+    func animationSequenceDidComplete(_ sequence: AnimationSequence);
 }
 
 internal class AnimationSequence: NSObject, UIDynamicAnimatorDelegate {
@@ -30,7 +30,7 @@ internal class AnimationSequence: NSObject, UIDynamicAnimatorDelegate {
     }
     
     //MARK: internal method
-    func addStep(step: AnimationStep) {
+    func addStep(_ step: AnimationStep) {
         steps.append(step)
     }
     
@@ -88,13 +88,13 @@ internal class AnimationSequence: NSObject, UIDynamicAnimatorDelegate {
     }
     
     //MARK: UIDynamicAnimatorDelegate methods
-    func dynamicAnimatorDidPause(animator: UIDynamicAnimator) {
+    func dynamicAnimatorDidPause(_ animator: UIDynamicAnimator) {
         animator.removeAllBehaviors()
         popFirstStepIfExsist()
         excuteFirstStepIfExist()
     }
     
-    func dynamicAnimatorWillResume(animator: UIDynamicAnimator) {
+    func dynamicAnimatorWillResume(_ animator: UIDynamicAnimator) {
         
     }
 }

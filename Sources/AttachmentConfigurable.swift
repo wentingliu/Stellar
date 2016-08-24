@@ -9,9 +9,14 @@
 import UIKit
 
 public protocol AttachmentConfigurable: BasicChainable {
-    func attachment(damping: CGFloat, frequency: CGFloat) -> AttachmentConfigurable
+    associatedtype AttachmentConfigurableType
+    
+    func attachment(_ damping: CGFloat, frequency: CGFloat) -> AttachmentConfigurableType
 }
 
-public protocol AttachmentConfigurable1: BasicChainable1 {
-    func attachment(damping: CGFloat, frequency: CGFloat) -> AttachmentConfigurable1
+extension AttachmentConfigurable {
+    public func attachment(_ damping: CGFloat = 0.5, frequency: CGFloat = 0.5) -> AttachmentConfigurableType {
+        context.changeMainType(.attachment(damping, frequency))
+        return self as! AttachmentConfigurableType
+    }
 }

@@ -9,5 +9,7 @@
 import Foundation
 
 protocol Interpolatable {
-    func interpolate(progress: Double, to: Self, externalData: Any?) -> Self
+    associatedtype InterpolatableType
+    
+    func interpolate(_ progress: Double, to: InterpolatableType, externalData: Any?) -> InterpolatableType
 }

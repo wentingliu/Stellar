@@ -8,8 +8,14 @@
 
 import Foundation
 
-public protocol StepControllable {
+public protocol StepControllable : StellarContext {
     //remove all remaining from excute sequence
     func cancelAllRemaining()
     //will add more methods to control animation steps
+}
+
+extension StepControllable {
+    public func cancelAllRemaining() {
+        context.removeAllRemaining()
+    }
 }

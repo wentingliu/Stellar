@@ -9,18 +9,39 @@
 import UIKit
 
 public protocol BasicConfigurable: BasicChainable {
-    func duration(d: CFTimeInterval) -> BasicConfigurable
-    func easing(type: TimingFunctionType) -> BasicConfigurable
-    func delay(d: CFTimeInterval) -> BasicConfigurable
-    func autoreverses() -> BasicConfigurable
-    func repeatCount(count: Int) -> BasicConfigurable
+    associatedtype BasicConfigurableType
+    
+    func duration(_ d: CFTimeInterval) -> BasicChainableType
+    func easing(_ type: TimingFunctionType) -> BasicChainableType
+    func delay(_ d: CFTimeInterval) -> BasicChainableType
+    func autoreverses() -> BasicChainableType
+    func repeatCount(_ count: Int) -> BasicChainableType
 }
 
-//CALayer
-public protocol BasicConfigurable1: BasicChainable1 {
-    func duration(d: CFTimeInterval) -> BasicConfigurable1
-    func easing(type: TimingFunctionType) -> BasicConfigurable1
-    func delay(d: CFTimeInterval) -> BasicConfigurable1
-    func autoreverses() -> BasicConfigurable1
-    func repeatCount(count: Int) -> BasicConfigurable1
+extension BasicConfigurable {
+    //MARK: Basic Animation configurations
+    public func duration(_ d: CFTimeInterval) -> BasicConfigurableType {
+        context.changeDuration(d)
+        return self as! BasicConfigurableType
+    }
+    
+    public func easing(_ type: TimingFunctionType) -> BasicConfigurableType {
+        context.changeEasing(type)
+        return self as! BasicConfigurableType
+    }
+    
+    public func delay(_ d: CFTimeInterval) -> BasicConfigurableType {
+        context.changeDelay(d)
+        return self as! BasicConfigurableType
+    }
+    
+    public func autoreverses() -> BasicConfigurableType {
+        context.changeAutoreverses(true)
+        return self as! BasicConfigurableType
+    }
+    
+    public func repeatCount(_ count: Int) -> BasicConfigurableType {
+        context.changeRepeatCount(count)
+        return self as! BasicConfigurableType
+    }
 }

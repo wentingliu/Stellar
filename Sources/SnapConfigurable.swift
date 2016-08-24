@@ -9,9 +9,14 @@
 import UIKit
 
 public protocol SnapConfigurable: BasicChainable {
-    func snap(damping: CGFloat) -> SnapConfigurable
+    associatedtype SnapConfigurableType
+    
+    func snap(_ damping: CGFloat) -> SnapConfigurableType
 }
 
-public protocol SnapConfigurable1: BasicChainable1 {
-    func snap(damping: CGFloat) -> SnapConfigurable1
+extension SnapConfigurable {
+    public func snap(_ damping: CGFloat = 0.5) -> SnapConfigurableType {
+        context.changeMainType(.snap(damping))
+        return self as! SnapConfigurableType
+    }
 }

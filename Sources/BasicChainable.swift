@@ -9,61 +9,204 @@
 import UIKit
 
 public protocol BasicChainable: Chainable {
-    func moveX(increment: CGFloat) -> UIView
-    func moveY(increment: CGFloat) -> UIView
-    func moveTo(point: CGPoint) -> UIView
-    func makeColor(color: UIColor) -> UIView
-    func makeAlpha(alpha: CGFloat) -> UIView
-    func rotate(z: CGFloat) -> UIView
-    func rotateX(x: CGFloat) -> UIView
-    func rotateY(y: CGFloat) -> UIView
-    func rotateXY(xy: CGFloat) -> UIView
-    func makeWidth(width: CGFloat) -> UIView
-    func makeHeight(height: CGFloat) -> UIView
-    func makeSize(size: CGSize) -> UIView
-    func makeFrame(frame: CGRect) -> UIView
-    func makeBounds(bounds: CGRect) -> UIView
-    func scaleX(x: CGFloat) -> UIView
-    func scaleY(y: CGFloat) -> UIView
-    func scaleXY(x: CGFloat, _ y: CGFloat) -> UIView
-    func cornerRadius(radius: CGFloat) -> UIView
-    func borderWidth(width: CGFloat) -> UIView
-    func shadowRadius(radius: CGFloat) -> UIView
-    func zPosition(position: CGFloat) -> UIView
-    func anchorPoint(point: CGPoint) -> UIView
-    func anchorPointZ(z: CGFloat) -> UIView
-    func shadowOffset(offset: CGSize) -> UIView
-    func shadowColor(color: UIColor) -> UIView
-    func shadowOpacity(opacity: Float) -> UIView
-    func makeTintColor(color: UIColor) -> UIView
-    func completion(c: () -> Void) -> UIView
+    associatedtype BasicChainableType
+    
+    func moveX(_ increment: CGFloat) -> BasicChainableType
+    func moveY(_ increment: CGFloat) -> BasicChainableType
+    func moveTo(_ point: CGPoint) -> BasicChainableType
+    func makeColor(_ color: UIColor) -> BasicChainableType
+    func makeAlpha(_ alpha: CGFloat) -> BasicChainableType
+    func rotate(_ z: CGFloat) -> BasicChainableType
+    func rotateX(_ x: CGFloat) -> BasicChainableType
+    func rotateY(_ y: CGFloat) -> BasicChainableType
+    func rotateXY(_ xy: CGFloat) -> BasicChainableType
+    func makeWidth(_ width: CGFloat) -> BasicChainableType
+    func makeHeight(_ height: CGFloat) -> BasicChainableType
+    func makeSize(_ size: CGSize) -> BasicChainableType
+    func makeFrame(_ frame: CGRect) -> BasicChainableType
+    func makeBounds(_ bounds: CGRect) -> BasicChainableType
+    func scaleX(_ x: CGFloat) -> BasicChainableType
+    func scaleY(_ y: CGFloat) -> BasicChainableType
+    func scaleXY(_ x: CGFloat, _ y: CGFloat) -> BasicChainableType
+    func cornerRadius(_ radius: CGFloat) -> BasicChainableType
+    func borderWidth(_ width: CGFloat) -> BasicChainableType
+    func shadowRadius(_ radius: CGFloat) -> BasicChainableType
+    func zPosition(_ position: CGFloat) -> BasicChainableType
+    func anchorPoint(_ point: CGPoint) -> BasicChainableType
+    func anchorPointZ(_ z: CGFloat) -> BasicChainableType
+    func shadowOffset(_ offset: CGSize) -> BasicChainableType
+    func shadowColor(_ color: UIColor) -> BasicChainableType
+    func shadowOpacity(_ opacity: Float) -> BasicChainableType
+    func makeTintColor(_ color: UIColor) -> BasicChainableType
+    func completion(_ c: () -> Void) -> BasicChainableType
 }
 
-//CALayer
-public protocol BasicChainable1: Chainable1 {
-    func moveTo(point: CGPoint) -> CALayer
-    func makeColor(color: UIColor) -> CALayer
-    func makeOpacity(opacity: Float) -> CALayer
-    func rotate(z: CGFloat) -> CALayer
-    func rotateX(x: CGFloat) -> CALayer
-    func rotateY(y: CGFloat) -> CALayer
-    func rotateXY(xy: CGFloat) -> CALayer
-    func makeWidth(width: CGFloat) -> CALayer
-    func makeHeight(height: CGFloat) -> CALayer
-    func makeSize(size: CGSize) -> CALayer
-    func makeFrame(frame: CGRect) -> CALayer
-    func makeBounds(bounds: CGRect) -> CALayer
-    func scaleX(x: CGFloat) -> CALayer
-    func scaleY(y: CGFloat) -> CALayer
-    func scaleXY(x: CGFloat, _ y: CGFloat) -> CALayer
-    func cornerRadius(radius: CGFloat) -> CALayer
-    func borderWidth(width: CGFloat) -> CALayer
-    func shadowRadius(radius: CGFloat) -> CALayer
-    func zPosition(position: CGFloat) -> CALayer
-    func anchorPoint(point: CGPoint) -> CALayer
-    func anchorPointZ(z: CGFloat) -> CALayer
-    func shadowOffset(offset: CGSize) -> CALayer
-    func shadowColor(color: UIColor) -> CALayer
-    func shadowOpacity(opacity: Float) -> CALayer
-    func completion(c: () -> Void) -> CALayer
+extension BasicChainable {
+    //MARK: animation methods
+    public func moveX(_ increment: CGFloat) -> BasicChainableType {
+        let type = AnimationType(type: .basic, subType: .moveX(increment))
+        context.addAnimationType(type)
+        return self as!  BasicChainableType
+    }
+    
+    public func moveY(_ increment: CGFloat) -> BasicChainableType {
+        let type = AnimationType(type: .basic, subType: .moveY(increment))
+        context.addAnimationType(type)
+        return self as!  BasicChainableType
+    }
+    
+    public func moveTo(_ point: CGPoint) -> BasicChainableType {
+        let type = AnimationType(type: .basic, subType: .moveTo(point))
+        context.addAnimationType(type)
+        return self as!  BasicChainableType
+    }
+    
+    public func makeColor(_ color: UIColor) -> BasicChainableType {
+        let type = AnimationType(type: .basic, subType: .color(color))
+        context.addAnimationType(type)
+        return self as!  BasicChainableType
+    }
+    
+    public func makeAlpha(_ alpha: CGFloat) -> BasicChainableType {
+        let type = AnimationType(type: .basic, subType: .alpha(alpha))
+        context.addAnimationType(type)
+        return self as!  BasicChainableType
+    }
+    
+    public func rotate(_ z: CGFloat) -> BasicChainableType {
+        let type = AnimationType(type: .basic, subType: .rotate(z))
+        context.addAnimationType(type)
+        return self as!  BasicChainableType
+    }
+    
+    public func rotateX(_ x: CGFloat) -> BasicChainableType {
+        let type = AnimationType(type: .basic, subType: .rotateX(x))
+        context.addAnimationType(type)
+        return self as!  BasicChainableType
+    }
+    
+    public func rotateY(_ y: CGFloat) -> BasicChainableType {
+        let type = AnimationType(type: .basic, subType: .rotateY(y))
+        context.addAnimationType(type)
+        return self as!  BasicChainableType
+    }
+    
+    public func rotateXY(_ xy: CGFloat) -> BasicChainableType {
+        let type = AnimationType(type: .basic, subType: .rotateXY(xy))
+        context.addAnimationType(type)
+        return self as!  BasicChainableType
+    }
+    
+    public func makeWidth(_ width: CGFloat) -> BasicChainableType {
+        let type = AnimationType(type: .basic, subType: .width(width))
+        context.addAnimationType(type)
+        return self as!  BasicChainableType
+    }
+    
+    public func makeHeight(_ height: CGFloat) -> BasicChainableType {
+        let type = AnimationType(type: .basic, subType: .height(height))
+        context.addAnimationType(type)
+        return self as!  BasicChainableType
+    }
+    
+    public func makeSize(_ size: CGSize) -> BasicChainableType {
+        let type = AnimationType(type: .basic, subType: .size(size))
+        context.addAnimationType(type)
+        return self as!  BasicChainableType
+    }
+    
+    public func makeFrame(_ frame: CGRect) -> BasicChainableType {
+        let type = AnimationType(type: .basic, subType: .frame(frame))
+        context.addAnimationType(type)
+        return self as!  BasicChainableType
+    }
+    
+    public func makeBounds(_ bounds: CGRect) -> BasicChainableType {
+        let type = AnimationType(type: .basic, subType: .bounds(bounds))
+        context.addAnimationType(type)
+        return self as!  BasicChainableType
+    }
+    
+    public func scaleX(_ x: CGFloat) -> BasicChainableType {
+        let type = AnimationType(type: .basic, subType: .scaleX(x))
+        context.addAnimationType(type)
+        return self as!  BasicChainableType
+    }
+    
+    public func scaleY(_ y: CGFloat) -> BasicChainableType {
+        let type = AnimationType(type: .basic, subType: .scaleY(y))
+        context.addAnimationType(type)
+        return self as!  BasicChainableType
+    }
+    
+    public func scaleXY(_ x: CGFloat, _ y: CGFloat) -> BasicChainableType {
+        let type = AnimationType(type: .basic, subType: .scaleXY(x,y))
+        context.addAnimationType(type)
+        return self as!  BasicChainableType
+    }
+    
+    public func cornerRadius(_ radius: CGFloat) -> BasicChainableType {
+        let type = AnimationType(type: .basic, subType: .cornerRadius(radius))
+        context.addAnimationType(type)
+        return self as!  BasicChainableType
+    }
+    
+    public func borderWidth(_ width: CGFloat) -> BasicChainableType {
+        let type = AnimationType(type: .basic, subType: .borderWidth(width))
+        context.addAnimationType(type)
+        return self as!  BasicChainableType
+    }
+    
+    public func shadowRadius(_ radius: CGFloat) -> BasicChainableType {
+        let type = AnimationType(type: .basic, subType: .shadowRadius(radius))
+        context.addAnimationType(type)
+        return self as!  BasicChainableType
+    }
+    
+    public func zPosition(_ position: CGFloat) -> BasicChainableType {
+        let type = AnimationType(type: .basic, subType: .zPosition(position))
+        context.addAnimationType(type)
+        return self as!  BasicChainableType
+    }
+    
+    public func anchorPoint(_ point: CGPoint) -> BasicChainableType {
+        let type = AnimationType(type: .basic, subType: .anchorPoint(point))
+        context.addAnimationType(type)
+        return self as!  BasicChainableType
+    }
+    
+    public func anchorPointZ(_ z: CGFloat) -> BasicChainableType {
+        let type = AnimationType(type: .basic, subType: .anchorPointZ(z))
+        context.addAnimationType(type)
+        return self as!  BasicChainableType
+    }
+    
+    public func shadowOffset(_ offset: CGSize) -> BasicChainableType {
+        let type = AnimationType(type: .basic, subType: .shadowOffset(offset))
+        context.addAnimationType(type)
+        return self as!  BasicChainableType
+    }
+    
+    public func shadowColor(_ color: UIColor) -> BasicChainableType {
+        let type = AnimationType(type: .basic, subType: .shadowColor(color))
+        context.addAnimationType(type)
+        return self as!  BasicChainableType
+    }
+    
+    public func shadowOpacity(_ opacity: Float) -> BasicChainableType {
+        let type = AnimationType(type: .basic, subType: .shadowOpacity(opacity))
+        context.addAnimationType(type)
+        return self as!  BasicChainableType
+    }
+    
+    public func makeTintColor(_ color: UIColor) -> BasicChainableType {
+        let type = AnimationType(type: .basic, subType: .tintColor(color))
+        context.addAnimationType(type)
+        return self as!  BasicChainableType
+    }
+    
+    public func completion(_ c: () -> Void) -> BasicChainableType {
+        context.changeCompletion(c)
+        return self as!  BasicChainableType
+    }
 }

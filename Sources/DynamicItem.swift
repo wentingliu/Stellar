@@ -63,10 +63,10 @@ final class DynamicItem<T: Vectorial>: NSObject, UIDynamicItem {
             updateFrame()
         }
     }
-    var transform: CGAffineTransform = CGAffineTransformIdentity
+    var transform: CGAffineTransform = CGAffineTransform.identity
     var bounds: CGRect {
         get {
-            return CGRectMake(center.x, center.y, 100, 100)
+            return CGRect(x: center.x, y: center.y, width: 100, height: 100)
         }
     }
 }
