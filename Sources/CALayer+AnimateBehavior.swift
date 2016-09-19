@@ -56,7 +56,7 @@ extension CALayer: DriveAnimateBehaviors {
             
             behavior = basicBehavior(step, from: from, to: to, render: render)
         case .color(let color):
-            var from = UIColor.clear()
+            var from = UIColor.clear
             if let bc = self.backgroundColor {
                 from = UIColor(cgColor: bc)
             }
@@ -237,7 +237,7 @@ extension CALayer: DriveAnimateBehaviors {
             
         case .shadowColor(let c):
             let color = self.shadowColor
-            let from = (color != nil) ? UIColor(cgColor: color!) : UIColor.clear()
+            let from = (color != nil) ? UIColor(cgColor: color!) : UIColor.clear
             let to = c
             let render = {(c: UIColor) in
                 self.shadowColor = c.cgColor
@@ -286,7 +286,7 @@ extension CALayer: DriveAnimateBehaviors {
             behavior = snapBehavior(damping, from: from, to: to, render: render)
             
         case .color(let color):
-            var from = UIColor.clear()
+            var from = UIColor.clear
             if let bc = self.backgroundColor {
                 from = UIColor(cgColor: bc)
             }
@@ -465,7 +465,7 @@ extension CALayer: DriveAnimateBehaviors {
             
         case .shadowColor(let c):
             let color = self.shadowColor
-            let from = (color != nil) ? UIColor(cgColor: color!) : UIColor.clear()
+            let from = (color != nil) ? UIColor(cgColor: color!) : UIColor.clear
             let to = c
             let render = {(c: UIColor) in
                 self.shadowColor = c.cgColor
@@ -511,7 +511,7 @@ extension CALayer: DriveAnimateBehaviors {
             behavior = attachmentBehavior(damping, frequency: frequency, from: from, to: to, render: render)
             
         case .color(let color):
-            var from = UIColor.clear()
+            var from = UIColor.clear
             if let bc = self.backgroundColor {
                 from = UIColor(cgColor: bc)
             }
@@ -690,7 +690,7 @@ extension CALayer: DriveAnimateBehaviors {
             
         case .shadowColor(let c):
             let color = self.shadowColor
-            let from = (color != nil) ? UIColor(cgColor: color!) : UIColor.clear()
+            let from = (color != nil) ? UIColor(cgColor: color!) : UIColor.clear
             let to = c
             let render = {(c: UIColor) in
                 self.shadowColor = c.cgColor
@@ -735,7 +735,7 @@ extension CALayer: DriveAnimateBehaviors {
             behavior = gravityBehavior(magnitude, from: from, to: to, render: render)
             
         case .color(let color):
-            var from = UIColor.clear()
+            var from = UIColor.clear
             if let bc = self.backgroundColor {
                 from = UIColor(cgColor: bc)
             }
@@ -914,7 +914,7 @@ extension CALayer: DriveAnimateBehaviors {
             
         case .shadowColor(let c):
             let color = self.shadowColor
-            let from = (color != nil) ? UIColor(cgColor: color!) : UIColor.clear()
+            let from = (color != nil) ? UIColor(cgColor: color!) : UIColor.clear
             let to = c
             let render = {(c: UIColor) in
                 self.shadowColor = c.cgColor
