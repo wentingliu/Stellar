@@ -44,7 +44,7 @@ extension UIView: BasicConfigurable, SnapConfigurable, AttachmentConfigurable, G
     public var context: AnimationContext {
         get {
             //let identifier = String(unsafeAddress(of: self.layer))
-            let identifier = String(describing: Unmanaged.passUnretained(self.layer))
+            let identifier = String(describing: Unmanaged.passUnretained(self.layer).toOpaque())
             var context = self.layer.value(forKey: identifier) as? AnimationContext
             if context == nil {
                 context = AnimationContext(object: self)
