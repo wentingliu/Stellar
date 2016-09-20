@@ -36,7 +36,9 @@ extension UIView: BasicConfigurable, SnapConfigurable, AttachmentConfigurable, G
     
     //MARK: StepControllable methods
     
-
+    public func completion(_ c: () -> Void) -> UIView {
+        return self
+    }
     
     //Private Context for view and layer
     public var context: AnimationContext {

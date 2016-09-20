@@ -205,7 +205,7 @@ extension BasicChainable {
         return self as!  BasicChainableType
     }
     
-    public func completion(_ c: () -> Void) -> BasicChainableType {
+    public func completion(_ c: @escaping () -> Void) -> BasicChainableType {
         context.changeCompletion(c)
         return self as!  BasicChainableType
     }

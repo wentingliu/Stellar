@@ -43,7 +43,7 @@ public class AnimationContext: NSObject, UIDynamicAnimatorDelegate, AnimationSeq
         step.repeatCount = count
     }
     
-    func changeCompletion(_ c: () -> Void) {
+    func changeCompletion(_ c: @escaping () -> Void) {
         let step = lastStep()
         step.completion = c
     }
@@ -83,7 +83,7 @@ public class AnimationContext: NSObject, UIDynamicAnimatorDelegate, AnimationSeq
             sequence.start()
         }
         //make a temple sequence for next step
-        makeNextSequence()
+        let _ = makeNextSequence()
     }
     
     func removeAllRemaining() {
