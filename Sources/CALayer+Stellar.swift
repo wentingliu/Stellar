@@ -16,10 +16,15 @@ extension CALayer: BasicConfigurable, SnapConfigurable, AttachmentConfigurable, 
     public typealias AttachmentConfigurableType = CALayer
     public typealias SnapConfigurableType = CALayer
     
+    public func completion(_ c: () -> Void) -> CALayer {
+        return self
+    }
+    
     //Private Context for view and layer
     public var context: AnimationContext {
         get {
-            let identifier = String(unsafeAddress(of: self))
+            let identifier = String(describing: Unmanaged.passUnretained(self).toOpaque())
+
             var context = self.value(forKey: identifier) as? AnimationContext
             if context == nil {
                 context = AnimationContext(object: self)

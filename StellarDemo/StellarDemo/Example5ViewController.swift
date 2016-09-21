@@ -29,7 +29,7 @@ class Example5ViewController: UIViewController {
             .then().moveY(80).gravity()
             .then().moveY(-40)
             .then().moveY(40).gravity()
-            .then().makeWidth(120).makeHeight(30).cornerRadius(15).easing(.swiftOut).makeColor(UIColor.brown())
+            .then().makeWidth(120).makeHeight(30).cornerRadius(15).easing(.swiftOut).makeColor(UIColor.brown)
             .animate()
 
     }

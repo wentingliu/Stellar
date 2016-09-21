@@ -30,7 +30,7 @@ class Example6ViewController: UIViewController {
             centerItems.append(basic)
             
             let color = view.backgroundColor!
-            let basic1 = DynamicItemBasic(from: color, to: UIColor.red(), render: { (c) in
+            let basic1 = DynamicItemBasic(from: color, to: UIColor.red, render: { (c) in
                 view.backgroundColor = c
             })
             basic1.duration = 1.0

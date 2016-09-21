@@ -137,8 +137,8 @@ extension UIDynamicItem {
     func collisionBehavior(_ mode: UICollisionBehaviorMode = .boundaries, path: UIBezierPath) -> UICollisionBehavior {
         let collision = UICollisionBehavior()
         collision.collisionMode = mode
-        let identifier = String(unsafeAddress(of: self))
-        collision.addBoundary(withIdentifier: identifier, for: path)
+        let identifier = String(describing: Unmanaged.passUnretained(self).toOpaque())
+        collision.addBoundary(withIdentifier: identifier as NSCopying, for: path)
         collision.addItem(self)
         return collision
     }
@@ -146,8 +146,9 @@ extension UIDynamicItem {
     func collisionBehavior(_ mode: UICollisionBehaviorMode = .boundaries, fromPoint: CGPoint, toPoint: CGPoint) -> UICollisionBehavior {
         let collision = UICollisionBehavior()
         collision.collisionMode = mode
-        let identifier = String(unsafeAddress(of: self))
-        collision.addBoundary(withIdentifier: identifier, from: fromPoint, to: toPoint)
+        let identifier = String(describing: Unmanaged.passUnretained(self).toOpaque())
+
+        collision.addBoundary(withIdentifier: identifier as NSCopying, from: fromPoint, to: toPoint)
         collision.addItem(self)
         return collision
     }

@@ -56,7 +56,7 @@ extension CALayer: DriveAnimateBehaviors {
             
             behavior = basicBehavior(step, from: from, to: to, render: render)
         case .color(let color):
-            var from = UIColor.clear()
+            var from = UIColor.clear
             if let bc = self.backgroundColor {
                 from = UIColor(cgColor: bc)
             }
@@ -237,7 +237,7 @@ extension CALayer: DriveAnimateBehaviors {
             
         case .shadowColor(let c):
             let color = self.shadowColor
-            let from = (color != nil) ? UIColor(cgColor: color!) : UIColor.clear()
+            let from = (color != nil) ? UIColor(cgColor: color!) : UIColor.clear
             let to = c
             let render = {(c: UIColor) in
                 self.shadowColor = c.cgColor
@@ -286,7 +286,7 @@ extension CALayer: DriveAnimateBehaviors {
             behavior = snapBehavior(damping, from: from, to: to, render: render)
             
         case .color(let color):
-            var from = UIColor.clear()
+            var from = UIColor.clear
             if let bc = self.backgroundColor {
                 from = UIColor(cgColor: bc)
             }
@@ -465,7 +465,7 @@ extension CALayer: DriveAnimateBehaviors {
             
         case .shadowColor(let c):
             let color = self.shadowColor
-            let from = (color != nil) ? UIColor(cgColor: color!) : UIColor.clear()
+            let from = (color != nil) ? UIColor(cgColor: color!) : UIColor.clear
             let to = c
             let render = {(c: UIColor) in
                 self.shadowColor = c.cgColor
@@ -511,7 +511,7 @@ extension CALayer: DriveAnimateBehaviors {
             behavior = attachmentBehavior(damping, frequency: frequency, from: from, to: to, render: render)
             
         case .color(let color):
-            var from = UIColor.clear()
+            var from = UIColor.clear
             if let bc = self.backgroundColor {
                 from = UIColor(cgColor: bc)
             }
@@ -690,7 +690,7 @@ extension CALayer: DriveAnimateBehaviors {
             
         case .shadowColor(let c):
             let color = self.shadowColor
-            let from = (color != nil) ? UIColor(cgColor: color!) : UIColor.clear()
+            let from = (color != nil) ? UIColor(cgColor: color!) : UIColor.clear
             let to = c
             let render = {(c: UIColor) in
                 self.shadowColor = c.cgColor
@@ -735,7 +735,7 @@ extension CALayer: DriveAnimateBehaviors {
             behavior = gravityBehavior(magnitude, from: from, to: to, render: render)
             
         case .color(let color):
-            var from = UIColor.clear()
+            var from = UIColor.clear
             if let bc = self.backgroundColor {
                 from = UIColor(cgColor: bc)
             }
@@ -914,7 +914,7 @@ extension CALayer: DriveAnimateBehaviors {
             
         case .shadowColor(let c):
             let color = self.shadowColor
-            let from = (color != nil) ? UIColor(cgColor: color!) : UIColor.clear()
+            let from = (color != nil) ? UIColor(cgColor: color!) : UIColor.clear
             let to = c
             let render = {(c: UIColor) in
                 self.shadowColor = c.cgColor
@@ -946,7 +946,7 @@ extension CALayer: DriveAnimateBehaviors {
     }
     
     //MARK: Private methods
-    private func basicBehavior<T: Interpolatable>(_ step: AnimationStep,from: T, to: T, render: ((T) -> Void)) -> UIDynamicBehavior {
+    private func basicBehavior<T: Interpolatable>(_ step: AnimationStep,from: T, to: T, render: @escaping ((T) -> Void)) -> UIDynamicBehavior {
         let item = DynamicItemBasic(from: from, to: to, render: render)
         let push = item.pushBehavior(.down)
         item.behavior = push
@@ -959,7 +959,7 @@ extension CALayer: DriveAnimateBehaviors {
         return push
     }
     
-    private func snapBehavior<T: Vectorial>(_ damping: CGFloat, from: T, to: T, render: (T) -> Void) -> UIDynamicBehavior {
+    private func snapBehavior<T: Vectorial>(_ damping: CGFloat, from: T, to: T, render: @escaping (T) -> Void) -> UIDynamicBehavior {
         let item = DynamicItem(from: from, to: to, render: render)
         let snap = item.snapBehavior(item.toP, damping: damping)
         item.behavior = snap
@@ -967,7 +967,7 @@ extension CALayer: DriveAnimateBehaviors {
         return snap
     }
     
-    private func snapBehavior<T: Vectorial2>(_ damping: CGFloat, from: T, to: T, render: (T) -> Void) -> UIDynamicBehavior {
+    private func snapBehavior<T: Vectorial2>(_ damping: CGFloat, from: T, to: T, render: @escaping (T) -> Void) -> UIDynamicBehavior {
         let item = DynamicItem2(from: from, to: to, render: render)
         let point = CGPoint(x: 0.0, y: item.referenceChangeLength)
         let snap = item.snapBehavior(point, damping: damping)
@@ -976,14 +976,14 @@ extension CALayer: DriveAnimateBehaviors {
         return snap
     }
     
-    private func attachmentBehavior<T: Vectorial>(_ damping: CGFloat, frequency: CGFloat, from: T, to: T, render: (T) -> Void) -> UIDynamicBehavior {
+    private func attachmentBehavior<T: Vectorial>(_ damping: CGFloat, frequency: CGFloat, from: T, to: T, render: @escaping (T) -> Void) -> UIDynamicBehavior {
         let item = DynamicItem(from: from, to: to, render: render)
         let attachment = item.attachmentBehavior(item.toP, length: 0.0, damping: damping, frequency: frequency)
         item.behavior = attachment
         return attachment
     }
     
-    private func attachmentBehavior<T: Vectorial2>(_ damping: CGFloat, frequency: CGFloat, from: T, to: T, render: (T) -> Void) -> UIDynamicBehavior {
+    private func attachmentBehavior<T: Vectorial2>(_ damping: CGFloat, frequency: CGFloat, from: T, to: T, render: @escaping (T) -> Void) -> UIDynamicBehavior {
         let item = DynamicItem2(from: from, to: to, render: render)
         let point = CGPoint(x: 0.0, y: item.referenceChangeLength)
         let attachment = item.attachmentBehavior(point, length: 0.0, damping: damping, frequency: frequency)
@@ -991,7 +991,7 @@ extension CALayer: DriveAnimateBehaviors {
         return attachment
     }
     
-    private func gravityBehavior<T: Interpolatable>(_ magnitude: Double, from: T, to: T, render: (T) -> Void) -> UIDynamicBehavior {
+    private func gravityBehavior<T: Interpolatable>(_ magnitude: Double, from: T, to: T, render: @escaping (T) -> Void) -> UIDynamicBehavior {
         let item = DynamicItemGravity(from: from, to: to, render: render)
         let push = item.pushBehavior(.down)
         item.behavior = push

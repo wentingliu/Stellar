@@ -8,9 +8,9 @@
 
 import UIKit
 
-enum ConfigurationError: ErrorProtocol {
+enum ConfigurationError: Error {
     case invalidString
-    case transformedError(ErrorProtocol)
+    case transformedError(Error)
     case undefined
 }
 

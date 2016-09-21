@@ -41,7 +41,7 @@ class Example1ViewController: UIViewController {
                                 
                 }, completion: { (f) in
                  
-                    ball.backgroundColor?.animateTo(UIColor.red(),
+                    ball.backgroundColor?.animateTo(UIColor.red,
                         duration: 0.5,
                         delay: interval,
                         type: .easeIn,
