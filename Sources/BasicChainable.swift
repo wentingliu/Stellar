@@ -38,7 +38,7 @@ public protocol BasicChainable: Chainable {
     func shadowColor(_ color: UIColor) -> BasicChainableType
     func shadowOpacity(_ opacity: Float) -> BasicChainableType
     func makeTintColor(_ color: UIColor) -> BasicChainableType
-    func completion(_ c: () -> Void) -> BasicChainableType
+    func completion(_ c: @escaping () -> Void) -> BasicChainableType
 }
 
 extension BasicChainable {

@@ -36,7 +36,8 @@ extension UIView: BasicConfigurable, SnapConfigurable, AttachmentConfigurable, G
     
     //MARK: StepControllable methods
     
-    public func completion(_ c: () -> Void) -> UIView {
+    public func completion(_ c: @escaping () -> Void) -> UIView {
+        context.changeCompletion(c)
         return self
     }
     
